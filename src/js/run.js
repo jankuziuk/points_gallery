@@ -1,4 +1,4 @@
-const _galleryController =  new GalleryController('.pointsGallery', {
+const _galleries =  new Galleries('.pointsGallery', {
     galleryIDAttr: 'data-gallery-id',
     galleryItemSelector: '.pointsGallery-image',
     galleryItemIDAttr: 'data-item-id',
@@ -8,5 +8,13 @@ const _galleryController =  new GalleryController('.pointsGallery', {
     galleryPointYAttr: 'data-y',
     galleryPointProductIdAttr: 'data-product-id',
 });
+console.log(_galleries.getGallery('1'));
+console.log(_galleries.getGallery('1').getId());
+console.log(_galleries.getGallery('1').getItems());
+console.log(_galleries.getGallery('1').getItem("1__1"));
+console.log(_galleries.getGallery('1').getItem('1__1').getPoints());
+console.log(_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5'));
 
-console.log(_galleryController);
+_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5').setY('100%');
+
+console.log(_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5'));

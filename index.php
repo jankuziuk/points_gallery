@@ -22,7 +22,7 @@
     <?php foreach ($galleriesList as $gallery): ?>
         <div class="pointsGallery" data-gallery-id="<?php echo $gallery['gallery_id']; ?>">
             <?php foreach ($gallery['items'] as $item): ?>
-                <div class="pointsGallery-image" data-item-id="<?php echo $item['item_id'];?> ">
+                <div class="pointsGallery-image" data-item-id="<?php echo $item['item_id'];?>">
                     <img src="<?php echo $galleriesImages[$item['item_id']]; ?>" alt="" />
                     <?php if (isset($item['points']) && !empty($item['points'])): ?>
                         <div class="pointsGallery-points">

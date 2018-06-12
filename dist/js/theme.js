@@ -2,6 +2,104 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var Galleries = function () {
+    function Galleries() {
+        var _gallerySelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.pointsGallery';
+
+        var _properties = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        var _galleries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+        _classCallCheck(this, Galleries);
+
+        this.gallerySelector = _gallerySelector;
+        this.properties = _properties;
+        this.galleries = _galleries;
+
+        this.initAction();
+    }
+
+    Galleries.prototype.initAction = function initAction() {
+        this.getGalleries();
+        return this.galleries;
+    };
+
+    Galleries.prototype.getGallery = function getGallery(id) {
+        return this.galleries[id];
+    };
+
+    Galleries.prototype.getGalleries = function getGalleries() {
+        var galleries = document.querySelectorAll(this.gallerySelector);
+
+        if (galleries.length === 0) {
+            return {};
+        } else {
+            for (var _iterator = galleries, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                var _ref;
+
+                if (_isArray) {
+                    if (_i >= _iterator.length) break;
+                    _ref = _iterator[_i++];
+                } else {
+                    _i = _iterator.next();
+                    if (_i.done) break;
+                    _ref = _i.value;
+                }
+
+                var _gallery = _ref;
+
+                var _galleryId = _gallery.getAttribute(this.properties.galleryIDAttr);
+                var gallery = new Gallery(_galleryId);
+
+                for (var _iterator2 = _gallery.querySelectorAll(this.properties.galleryItemSelector), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+                    var _ref2;
+
+                    if (_isArray2) {
+                        if (_i2 >= _iterator2.length) break;
+                        _ref2 = _iterator2[_i2++];
+                    } else {
+                        _i2 = _iterator2.next();
+                        if (_i2.done) break;
+                        _ref2 = _i2.value;
+                    }
+
+                    var _item = _ref2;
+
+                    var _itemId = _item.getAttribute(this.properties.galleryItemIDAttr);
+                    var item = new Item(_itemId);
+
+                    for (var _iterator3 = _item.querySelectorAll(this.properties.galleryPointSelector), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+                        var _ref3;
+
+                        if (_isArray3) {
+                            if (_i3 >= _iterator3.length) break;
+                            _ref3 = _iterator3[_i3++];
+                        } else {
+                            _i3 = _iterator3.next();
+                            if (_i3.done) break;
+                            _ref3 = _i3.value;
+                        }
+
+                        var _point = _ref3;
+
+                        var _pointId = _point.getAttribute(this.properties.galleryPointIDAttr);
+                        var _x = _point.getAttribute(this.properties.galleryPointXAttr);
+                        var _y = _point.getAttribute(this.properties.galleryPointYAttr);
+                        var _productId = _point.getAttribute(this.properties.galleryPointProductIdAttr);
+
+                        var point = new Point(_pointId, _x, _y, _productId);
+                        item.setPoint(_pointId, point);
+                    }
+                    gallery.setItem(_itemId, item);
+                }
+                this.galleries[_galleryId] = gallery;
+            }
+        }
+    };
+
+    return Galleries;
+}();
+
 var Gallery = function () {
     function Gallery(_id) {
         var _items = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -125,101 +223,7 @@ var Point = function () {
     return Point;
 }();
 
-var GalleryController = function () {
-    function GalleryController() {
-        var _gallerySelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.pointsGallery';
-
-        var _properties = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        var _galleries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-        _classCallCheck(this, GalleryController);
-
-        this.gallerySelector = _gallerySelector;
-        this.properties = _properties;
-        this.galleries = _galleries;
-
-        this.initAction();
-    }
-
-    GalleryController.prototype.initAction = function initAction() {
-        this.getGalleries();
-        return this.galleries;
-    };
-
-    GalleryController.prototype.getGalleries = function getGalleries() {
-        var galleries = document.querySelectorAll(this.gallerySelector);
-
-        if (galleries.length === 0) {
-            return {};
-        } else {
-            for (var _iterator = galleries, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-                var _ref;
-
-                if (_isArray) {
-                    if (_i >= _iterator.length) break;
-                    _ref = _iterator[_i++];
-                } else {
-                    _i = _iterator.next();
-                    if (_i.done) break;
-                    _ref = _i.value;
-                }
-
-                var _gallery = _ref;
-
-                var _galleryId = _gallery.getAttribute(this.properties.galleryIDAttr);
-                var gallery = new Gallery(_galleryId);
-
-                for (var _iterator2 = _gallery.querySelectorAll(this.properties.galleryItemSelector), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-                    var _ref2;
-
-                    if (_isArray2) {
-                        if (_i2 >= _iterator2.length) break;
-                        _ref2 = _iterator2[_i2++];
-                    } else {
-                        _i2 = _iterator2.next();
-                        if (_i2.done) break;
-                        _ref2 = _i2.value;
-                    }
-
-                    var _item = _ref2;
-
-                    var _itemId = _item.getAttribute(this.properties.galleryItemIDAttr);
-                    var item = new Item(_itemId);
-
-                    for (var _iterator3 = _item.querySelectorAll(this.properties.galleryPointSelector), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-                        var _ref3;
-
-                        if (_isArray3) {
-                            if (_i3 >= _iterator3.length) break;
-                            _ref3 = _iterator3[_i3++];
-                        } else {
-                            _i3 = _iterator3.next();
-                            if (_i3.done) break;
-                            _ref3 = _i3.value;
-                        }
-
-                        var _point = _ref3;
-
-                        var _pointId = _point.getAttribute(this.properties.galleryPointIDAttr);
-                        var _x = _point.getAttribute(this.properties.galleryPointXAttr);
-                        var _y = _point.getAttribute(this.properties.galleryPointYAttr);
-                        var _productId = _point.getAttribute(this.properties.galleryPointProductIdAttr);
-
-                        var point = new Point(_pointId, _x, _y, _productId);
-                        item.setPoint(_pointId, point);
-                    }
-                    gallery.setItem(_itemId, item);
-                }
-                this.galleries[_galleryId] = gallery;
-            }
-        }
-    };
-
-    return GalleryController;
-}();
-
-var _galleryController = new GalleryController('.pointsGallery', {
+var _galleries = new Galleries('.pointsGallery', {
     galleryIDAttr: 'data-gallery-id',
     galleryItemSelector: '.pointsGallery-image',
     galleryItemIDAttr: 'data-item-id',
@@ -229,5 +233,13 @@ var _galleryController = new GalleryController('.pointsGallery', {
     galleryPointYAttr: 'data-y',
     galleryPointProductIdAttr: 'data-product-id'
 });
+console.log(_galleries.getGallery('1'));
+console.log(_galleries.getGallery('1').getId());
+console.log(_galleries.getGallery('1').getItems());
+console.log(_galleries.getGallery('1').getItem("1__1"));
+console.log(_galleries.getGallery('1').getItem('1__1').getPoints());
+console.log(_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5'));
 
-console.log(_galleryController);
+_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5').setY('100%');
+
+console.log(_galleries.getGallery('1').getItem('1__1').getPoint('1__1__5'));

@@ -22,7 +22,7 @@ var path = {
         maps: '/'
     },
     dev: {
-        js: ['src/js/Objects/*.js', 'src/js/Controllers/*.js', 'src/js/**/*.js'],
+        js: ['src/js/Objects/*.js', 'src/js/**/*.js'],
         css: 'src/sass/'
     },
     watch: {

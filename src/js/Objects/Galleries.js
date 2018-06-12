@@ -1,4 +1,4 @@
-class GalleryController {
+class Galleries {
     constructor (_gallerySelector = '.pointsGallery', _properties = {}, _galleries = {}){
         this.gallerySelector = _gallerySelector;
         this.properties = _properties;
@@ -10,6 +10,10 @@ class GalleryController {
     initAction () {
         this.getGalleries();
         return this.galleries;
+    }
+
+    getGallery (id) {
+        return this.galleries[id];
     }
 
     getGalleries () {
