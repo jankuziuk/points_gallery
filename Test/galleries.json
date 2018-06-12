@@ -1,0 +1,34 @@
+[
+    {
+        "gallery_id": "1",
+        "items": [
+            {
+                "item_id": "1__1",
+                "points": [
+                    {
+                        "point_id": "1__1__1",
+                        "x": "10%",
+                        "y": "10%",
+                        "product_id": 18
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "gallery_id": "2",
+        "items": [
+            {
+                "item_id": "2__1",
+                "points": [
+                    {
+                        "point_id": "2__1__1",
+                        "x": "10%",
+                        "y": "10%",
+                        "product_id": 18
+                    }
+                ]
+            }
+        ]
+    }
+]
